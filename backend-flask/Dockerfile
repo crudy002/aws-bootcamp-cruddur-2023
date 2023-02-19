@@ -14,6 +14,8 @@ COPY requirements.txt requirements.txt
 
 # Inside Container
 # Install the python libraries used inside the app
+# Run command is creating a "Layer" in the image
+# run helps to build the image
 RUN pip3 install -r requirements.txt
 
 # Outside Conatiner -> Inside Container
@@ -29,5 +31,6 @@ ENV FLASK_ENV=development
 EXPOSE ${PORT}
 
 # CMD (Command)
+# CMD is the command the container is going to run when it's starts up
 # python3 -m flask run --host=0.0.0.0 --port=4567
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]

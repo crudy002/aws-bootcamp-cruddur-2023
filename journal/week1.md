@@ -42,8 +42,30 @@ each line o fthe docker file is an instruction for the system
 
 i added comments in the docker file using'#'
 
-the comments help to conveythe lessons learned in talking through each instruction line
+the comments help to convey the lessons learned in talking through each instruction line
 
+we are using python version 3
+
+we are using the flask framework which is web application framework
+
+# This is the command that built the conatiner image using the series of instructions laid out in ./backend-flask/Dockerfile
+docker build -t backend-flask ./backend-flask
+docker build = command
+-t  = tag/naming set to backend-flask
+./backend-flask = looks for "Dockerfile" in here
+
+docker build -t backend-flask ./backend-flask
+should be ->
+docker build -t backend-flask:1.0.0 ./backend-flask
+to add tag "1.0.0"
+
+docker images will list all of the docker images on the machine
+
+when container is running
+
+npm install
+
+docker compose orchestrates multiple containers working together
 
 
 HOMEWORK
