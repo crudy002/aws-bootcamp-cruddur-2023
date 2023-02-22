@@ -12,6 +12,7 @@ from services.message_groups import *
 from services.messages import *
 from services.create_message import *
 from services.show_activity import *
+from services.notifications_activities import *
 
 app = Flask(__name__)
 frontend = os.getenv('FRONTEND_URL')
@@ -113,5 +114,11 @@ def data_activities_reply(activity_uuid):
     return model['data'], 200
   return
 
+@app.route("/api/activities/notifications", methods=['GET'])
+def data_notification():
+  data = NotificationsActivities.run()
+  return data, 200
+
 if __name__ == "__main__":
   app.run(debug=True)
+
