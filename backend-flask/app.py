@@ -22,6 +22,7 @@ from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
 
 # Honeycomb -----------------
 # Initialize tracing and an exporter that can send data to Honeycomb
@@ -29,6 +30,11 @@ provider = TracerProvider()
 # This is where the OTEL Environment Variables get pulled in
 processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
+
+#Show this in the logs within the backen-flask app (STDOUT)
+simpleProcessor = SimpleSpanProcessor(ConsoleSpanExporter())
+provider.add_span_processor(simpleProcessor)
+
 trace.set_tracer_provider(provider)
 tracer = trace.get_tracer(__name__)
 
